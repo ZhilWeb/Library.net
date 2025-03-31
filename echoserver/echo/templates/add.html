@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавить книгу</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% load static %}
+    <link href="{% static 'style.css' %}?version=2" rel="stylesheet">
+    <link href="{% static 'button.css' %}?version=2" rel="stylesheet">
+    <script src="{% static 'script.js' %}?version=2"></script>
+</head>
+<body>
+    <h3>Введите данные о книге:</h3>
+    <form method="post" name="addBook" action="add_success/">
+        {% csrf_token %}
+        <div id="book-name" class="div-input">
+            <label>Название:</label><br>
+            <input type="text" name="book_name">
+        </div>
+
+        <div id="book-author" class="div-input">
+            <label>Автор:</label><br>
+            <input type="text" name="book_author">
+        </div>
+
+        <div id="book-price" class="div-input">
+            <label>Цена:</label><br>
+            <input type="text" name="book_price">
+        </div>
+
+        <div id="book-genre" class="div-input">
+            <label>Жанр:</label><br>
+            <input type="text" name="book_genre">
+        </div>
+
+        <div id="book-public-date" class="div-input">
+            <label>Дата публикации:</label><br>
+            <input type="text" name="book_public_date">
+        </div>
+
+        <div id="book-publisher" class="div-input">
+            <label>Издатель:</label><br>
+            <input type="text" name="book_publisher">
+        </div>
+
+        <input type="submit" class="add-book add-element" value="Добавить книгу">
+        <div class="back-button" onclick="toMain()">Назад</div>
+    </form>
+
+
+</body>
+</html>

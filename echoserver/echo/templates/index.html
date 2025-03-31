@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SUSU библиотека</title>
+    {% load static %}
+    <link href="{% static 'style.css' %}?version=2" rel="stylesheet">
+    <link href="{% static 'index.css' %}?version=2" rel="stylesheet">
+    <link href="{% static 'button.css' %}?version=2" rel="stylesheet">
+    <script src="{% static 'script.js' %}?version=2"></script>
+</head>
+<body>
+    <header>
+        <h2 id="welcome">Библиотека</h2>
+
+        {% if not is_active %}
+            <div class="nav-menu">
+                <a href="signin/">Войти</a>
+                <a href="signup/">Зарегистрироваться</a>
+            </div>
+        {% else %}
+            <div class="nav-menu">
+                <p>Добро пожаловать, {{ current_user.first_name }}</p>
+                <a href="http://127.0.0.1:8000/signout/">Выйти</a>
+            </div>
+        {% endif %}
+    </header>
+
+    {{ current_user.name }}
+    <h3 class="table-header">{{ header }}</h3>
+    <label for="limit-select">Кол-во записей на странице:</label>
+    <select name="limits" id="limit-select" onchange="selectLimit(event, {{ page }})">
+        <option disabled selected>---</option>
+        <option value="2">2</option>
+        <option value="5">5</option>
+        <option value="10">10</option>
+        <option value="0">Показать всё</option>
+    </select>
+    <table class="books">
+        <tr>
+            <th>№</th>
+            <th>ID</th>
+            <th>Название</th>
+            <th>Автор</th>
+            <th>Цена</th>
+            <th>Жанр</th>
+            <th>Дата публикации</th>
+            <th>Издатель</th>
+            {% if current_user.role == 'admin' %}
+                <th></th>
+                <th></th>
+            {% endif %}
+        </tr>
+
+        {% for book in books %}
+        <tr id="books-post">
+            <td>{{ forloop.counter }}</td>
+            <td>{{ book.id }}</td>
+            <td>{{ book.name }}</td>
+            <td>{{ book.author }}</td>
+            <td>{{ book.price }}</td>
+            <td>{{ book.genre }}</td>
+            <td>{{ book.public_date }}</td>
+            <td>{{ book.publisher }}</td>
+            {% if current_user.role == 'admin' %}
+                <td><a href="http://127.0.0.1:8000/edit/{{ book.id }}/" target="_blank">Изменить</a></td>
+                <td><a href="http://127.0.0.1:8000/delete/{{ book.id }}/">Удалить</a></td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </table>
+
+    {% if limit != 0 and page >= 1 or total_pages > 1 %}
+    <div class="page-wrapper">
+        {% for p in pages_list %}
+        {% if page == p %}
+        <span onclick="selectPage(event, {{ limit }})" class="page page-current">{{ p }}</span>
+        {% else %}
+        <span onclick="selectPage(event, {{ limit }})" class="page">{{ p }}</span>
+        {% endif %}
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% if is_active %}
+        <div class="add-element" onclick="toAdd()">Добавить новый элемент</div>
+    {% endif %}
+</body>
+</html>

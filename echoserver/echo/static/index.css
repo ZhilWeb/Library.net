@@ -1,0 +1,79 @@
+header{
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    background-color: #5CD3B5;
+}
+
+h2#welcome{
+    color: #FFF;
+    margin-left: 30px;
+}
+
+.nav-menu{
+    display: flex;
+    justify-content: space-between;
+    margin-right: 20px;
+    border-collapse: collapse;
+}
+
+.nav-menu > p, .nav-menu > a{
+    color: #FFF;
+    font-size: 16px;
+    font-weight: bold;
+    font-family: "Roboto", sans-serif;
+    width: auto;
+}
+
+.nav-menu > a{
+    text-decoration: none;
+    margin-left: 10px;
+}
+
+.table-header{
+    margin-bottom: 10px;
+    margin-left: 10px;
+}
+
+select#limit-select{
+    margin-bottom: 10px;
+}
+
+table.books{
+    width: 100%;
+    border: 2px solid #999999;
+    margin-bottom: 30px;
+}
+
+table.books th{
+    padding-top: 12px;
+    padding-bottom: 12px;
+    background-color: #999999;
+    color: #FFF;
+}
+
+table.books th, table.books td{
+    border: 1px solid #ddd;
+    padding: 8px;
+    font-size: 16px;
+}
+
+.page-wrapper{
+    margin-bottom: 10px;
+    border: 2px solid #49BBC3;
+    display: flex;
+    width: max-content;
+}
+
+.page{
+    padding: 10px;
+    border: 1px solid #49BBC3;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.page-current{
+    border: 2px solid #E0F034;
+}

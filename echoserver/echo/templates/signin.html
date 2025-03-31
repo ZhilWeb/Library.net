@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Вход</title>
+    {% load static %}
+    <link href="{% static 'style.css' %}?version=2" rel="stylesheet">
+    <link href="{% static 'button.css' %}?version=2" rel="stylesheet">
+    <script src="{% static 'script.js' %}?version=2"></script>
+</head>
+<body>
+    <h3>Введите данные о пользователе:</h3>
+    <form method="post" name="SignIn" action="signin_success/">
+        {% csrf_token %}
+        <div id="signin-login" class="div-input">
+            <label>Логин:</label>
+            <input type="text" name="username">
+        </div>
+
+        <div id="signin-password" class="div-input">
+            <label>Пароль:</label>
+            <input type="text" name="password">
+        </div>
+
+        <input type="submit" class="signin-button add-element" value="Войти">
+        <div class="back-button" onclick="toMain()">Назад</div>
+    </form>
+</body>
+</html>
